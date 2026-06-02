@@ -1,0 +1,38 @@
+{
+  "vat_rate": 24,
+  "services": [
+    {
+      "_comment": "Veoauto MAN (kv 10t)",
+      "price_local": "70€/h (Tartus)",
+      "price_away": "Väljaspool: 1.30€/km"
+    },
+    {
+      "_comment": "Tõsteteenus (Kraana)",
+      "price": "55€/h + sõit"
+    },
+    {
+      "_comment": "Traktor McCormick",
+      "price": "65€/h"
+    },
+    {
+      "_comment": "Traktor John Deere 3036E",
+      "price": "50€/h"
+    },
+    {
+      "_comment": "Traktori rent (JD 3036E)",
+      "price": "140€/päev"
+    },
+    {
+      "_comment": "Haagiserent",
+      "price": "30€/päev"
+    },
+    {
+      "_comment": "Lisatööd / Ootetund",
+      "price": "55€/h"
+    },
+    {
+      "_comment": "Töömees tunniks",
+      "price": "40€/h"
+    }
+  ]
+}

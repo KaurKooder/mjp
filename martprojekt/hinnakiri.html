@@ -59,42 +59,45 @@
           <tr>
             <td><strong>Veoauto MAN (kv 10t)</strong></td>
             <td>Tehnika, ehitusmaterjalide ja puisteainete (muld, kruus) vedu.</td>
-            <td class="left-align">{{ services[0].price_local }}<br><small>{{ services[0].price_away }}</small></td>
+            <td class="left-align">
+              <span data-price="0-local">Laen...</span><br>
+              <small><span data-price="0-away"></span></small>
+            </td>
           </tr>
           <tr>
             <td><strong>Tõsteteenus (Kraana)</strong></td>
             <td>Tõstevõime 4.5t, noole pikkus 15m.</td>
-            <td class="left-align">{{ services[1].price }}</td>
+            <td class="left-align" data-price="1">Laen...</td>
           </tr>
           <tr>
             <td><strong>Traktor McCormick</strong></td>
             <td>Niitmine, lumetõrje, kallurhaagis (kv 9t).</td>
-            <td class="left-align">{{ services[2].price }}</td>
+            <td class="left-align" data-price="2">Laen...</td>
           </tr>
           <tr>
             <td><strong>Traktor John Deere 3036E</strong></td>
             <td>Mullafreesimine, künd, kultiveerimine, tasandamine, laaduritööd.</td>
-            <td class="left-align">{{ services[3].price }}</td>
+            <td class="left-align" data-price="3">Laen...</td>
           </tr>
           <tr>
             <td><strong>Traktori rent (JD 3036E)</strong></td>
             <td>John Deere 3036E rent ilma juhita.</td>
-            <td class="left-align">{{ services[4].price }}</td>
+            <td class="left-align" data-price="4">Laen...</td>
           </tr>
           <tr>
             <td><strong>Haagiserent</strong></td>
             <td>Temared platvormhaagis.</td>
-            <td class="left-align">{{ services[5].price }}</td>
+            <td class="left-align" data-price="5">Laen...</td>
           </tr>
           <tr>
             <td><strong>Lisatööd / Ootetund</strong></td>
             <td>Ootetund ja muud lisatööd objektil.</td>
-            <td class="left-align">{{ services[6].price }}</td>
+            <td class="left-align" data-price="6">Laen...</td>
           </tr>
           <tr>
             <td><strong>Töömees tunniks</strong></td>
             <td>Abitööd ja käsitöö.</td>
-            <td class="left-align">{{ services[7].price }}</td>
+            <td class="left-align" data-price="7">Laen...</td>
           </tr>
           </tbody>
         </table>
@@ -102,7 +105,7 @@
       <div class="card-action grey lighten-4">
         <div class="row" style="margin-bottom: 0;">
           <div class="col s12 m8">
-            <p style="margin: 5px 0;"><strong>* Kõikidele hindadele lisandub käibemaks {{ vat_rate }}%</strong></p>
+            <p style="margin: 5px 0;"><strong>* Kõikidele hindadele lisandub käibemaks <span id="vat-rate">--</span>%</strong></p>
           </div>
           <div class="col s12 m4 right-align">
             <a href="kontakt.html" class="btn waves-effect waves-light orange darken-3">
@@ -139,8 +142,39 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // 1. Initialize Materialize mobile menu
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
+
+    // 2. Fetch prices dynamically from your external JSON file
+    fetch('prices.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Inject VAT Rate
+        document.getElementById('vat-rate').textContent = data.vat_rate;
+
+        // Inject dynamic values for the Truck (index 0)
+        document.querySelector('[data-price="0-local"]').textContent = data.services[0].price_local;
+        document.querySelector('[data-price="0-away"]').textContent = data.services[0].price_away;
+
+        // Inject standard layout for the rest of the items
+        for (let i = 1; i < data.services.length; i++) {
+          let cell = document.querySelector(`[data-price="${i}"]`);
+          if (cell) {
+            cell.textContent = data.services[i].price;
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error loading pricing layout:', error);
+        // Fallback warning text if the file fails to fetch
+        document.querySelectorAll('[data-price]').forEach(el => el.textContent = "Viga laadimisel");
+      });
   });
 </script>
 </body>
