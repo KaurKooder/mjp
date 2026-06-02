@@ -8,11 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-
-
 </head>
 <body>
-
 
 <nav class="navbar-custom">
   <div class="nav-wrapper container">
@@ -38,7 +35,6 @@
   <li><a class="sidenav-text" href="kontakt.html">KONTAKT</a></li>
 </ul>
 
-
 <section class="hinnakiri-title hero-section-hinnakiri center-align">
   <div class="container">
     <h1 class="hinnakiri-title-text">HINNAKIRI</h1>
@@ -63,42 +59,42 @@
           <tr>
             <td><strong>Veoauto MAN (kv 10t)</strong></td>
             <td>Tehnika, ehitusmaterjalide ja puisteainete (muld, kruus) vedu.</td>
-            <td class="left-align">70€/h (Tartus)<br><small>Väljaspool: 1.30€/km</small></td>
+            <td class="left-align">{{ services[0].price_local }}<br><small>{{ services[0].price_away }}</small></td>
           </tr>
           <tr>
             <td><strong>Tõsteteenus (Kraana)</strong></td>
             <td>Tõstevõime 4.5t, noole pikkus 15m.</td>
-            <td class="left-align">55€/h + sõit</td>
+            <td class="left-align">{{ services[1].price }}</td>
           </tr>
           <tr>
             <td><strong>Traktor McCormick</strong></td>
             <td>Niitmine, lumetõrje, kallurhaagis (kv 9t).</td>
-            <td class="left-align">65€/h</td>
+            <td class="left-align">{{ services[2].price }}</td>
           </tr>
           <tr>
             <td><strong>Traktor John Deere 3036E</strong></td>
             <td>Mullafreesimine, künd, kultiveerimine, tasandamine, laaduritööd.</td>
-            <td class="left-align">50€/h</td>
+            <td class="left-align">{{ services[3].price }}</td>
           </tr>
           <tr>
             <td><strong>Traktori rent (JD 3036E)</strong></td>
             <td>John Deere 3036E rent ilma juhita.</td>
-            <td class="left-align">140€/päev</td>
+            <td class="left-align">{{ services[4].price }}</td>
           </tr>
           <tr>
             <td><strong>Haagiserent</strong></td>
             <td>Temared platvormhaagis.</td>
-            <td class="left-align">30€/päev</td>
+            <td class="left-align">{{ services[5].price }}</td>
           </tr>
           <tr>
             <td><strong>Lisatööd / Ootetund</strong></td>
             <td>Ootetund ja muud lisatööd objektil.</td>
-            <td class="left-align">55€/h</td>
+            <td class="left-align">{{ services[6].price }}</td>
           </tr>
           <tr>
             <td><strong>Töömees tunniks</strong></td>
             <td>Abitööd ja käsitöö.</td>
-            <td class="left-align">40€/h</td>
+            <td class="left-align">{{ services[7].price }}</td>
           </tr>
           </tbody>
         </table>
@@ -106,7 +102,7 @@
       <div class="card-action grey lighten-4">
         <div class="row" style="margin-bottom: 0;">
           <div class="col s12 m8">
-            <p style="margin: 5px 0;"><strong>* Kõikidele hindadele lisandub käibemaks 24%</strong></p>
+            <p style="margin: 5px 0;"><strong>* Kõikidele hindadele lisandub käibemaks {{ vat_rate }}%</strong></p>
           </div>
           <div class="col s12 m4 right-align">
             <a href="kontakt.html" class="btn waves-effect waves-light orange darken-3">
@@ -140,11 +136,9 @@
   </div>
 </footer>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
   });
