@@ -11,14 +11,10 @@ body {
 
 /* Top Navbar */
 .navbar-custom {
-  background:linear-gradient(90deg, #F5EEDC 75%, #04423F 25%); /* Dark greenish color from image */
+  display: flex;
+  background-color: #F5EEDC;
   padding: 10px 0;
   box-shadow: none; /* Remove default Materialize shadow */
-}
-
-.navbar-custom {
-  display: flex;
-  background:linear-gradient(90deg, #F5EEDC 78%, #04423F 22%); /* Dark greenish color from image */
   font-size: 1.9rem;
   line-height: 3em;
   padding-bottom: 4em;
