@@ -290,6 +290,10 @@ body {
     font-size: 2.5rem;
   }
 
+  .hinnakiri-title-text {
+    font-size: 2.5rem;
+  }
+
   .hero-subtitle {
     font-size: 1rem;
   }
@@ -360,6 +364,9 @@ body {
   .hero-title {
     font-size: 2rem;
   }
+  .hinnakiri-title-text {
+    font-size: 1.8rem;
+  }
 }
 
 
@@ -384,6 +391,12 @@ body {
   justify-content: center;
   gap: 12px;
   margin-top: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .gallery-img {
